@@ -1,0 +1,33 @@
+name: 뉴스 자동 수집 (매일 오전 9시)
+
+on:
+  schedule:
+    # 매일 오전 9시 KST (UTC 00:00) 1회 실행
+    - cron: '0 0 * * *'
+  workflow_dispatch: # 수동 실행도 가능
+
+jobs:
+  fetch-news:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📰 일일 뉴스 수집 → Vercel KV 저장
+        run: |
+          echo "🕐 일일 뉴스 수집 시작: $(date)"
+          
+          # Vercel에 배포된 크론 API 호출
+          RESPONSE=$(curl -s -w "\n%{http_code}" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            "${{ secrets.SITE_URL }}/api/cron/fetch-news")
+          
+          HTTP_CODE=$(echo "$RESPONSE" | tail -1)
+          BODY=$(echo "$RESPONSE" | sed '$d')
+          
+          echo "📡 응답 코드: $HTTP_CODE"
+          echo "📄 응답: $BODY"
+          
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "❌ 수집 실패"
+            exit 1
+          fi
+          
+          echo "✅ 일일 뉴스 수집 → KV 저장 완료!"
