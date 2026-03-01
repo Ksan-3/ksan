@@ -1,7 +1,31 @@
 // /api/news — Vercel KV에서 뉴스 데이터를 읽어 반환
 // 크론(/api/cron/fetch-news)이 KV에 저장한 데이터를 읽기만 합니다.
 
-import { kv } from '@vercel/kv';
+import { createClient } from '@vercel/kv';
+
+// REDIS_URL에서 REST API 자격증명 자동 추출
+function getKV() {
+    // 1순위: KV 전용 환경변수
+    if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN) {
+        return createClient({
+            url: process.env.KV_REST_API_URL,
+            token: process.env.KV_REST_API_TOKEN,
+        });
+    }
+    // 2순위: REDIS_URL에서 파싱 (Upstash rediss://default:TOKEN@HOST:PORT)
+    if (process.env.REDIS_URL) {
+        try {
+            const parsed = new URL(process.env.REDIS_URL);
+            return createClient({
+                url: `https://${parsed.hostname}`,
+                token: parsed.password,
+            });
+        } catch (e) {
+            console.error('[KV] REDIS_URL 파싱 실패:', e.message);
+        }
+    }
+    return null;
+}
 
 const KV_KEY = 'news_articles';
 
@@ -17,13 +41,22 @@ export default async function handler(req, res) {
     }
 
     try {
+        const kv = getKV();
+        if (!kv) {
+            return res.status(200).json({
+                success: true,
+                data: [],
+                lastUpdate: null,
+                count: 0,
+                source: 'no-kv',
+            });
+        }
+
         // KV에서 뉴스 데이터 읽기
         const newsData = await kv.get(KV_KEY);
         const lastUpdate = await kv.get('news_last_updated');
 
         if (!newsData || Object.keys(newsData).length === 0) {
-            // KV에 데이터가 없으면 빈 배열 반환
-            // 프론트엔드에서 정적 폴백 데이터를 사용합니다.
             return res.status(200).json({
                 success: true,
                 data: [],
@@ -53,7 +86,6 @@ export default async function handler(req, res) {
         });
     } catch (err) {
         console.error('[뉴스API] KV 읽기 오류:', err);
-        // KV 연결 실패 시에도 빈 배열 반환 (프론트엔드 폴백 사용)
         return res.status(200).json({
             success: true,
             data: [],

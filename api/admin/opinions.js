@@ -1,6 +1,21 @@
-import { kv } from '@vercel/kv';
+import { createClient } from '@vercel/kv';
+
+// REDIS_URL에서 REST API 자격증명 자동 추출
+function getKV() {
+    if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN) {
+        return createClient({ url: process.env.KV_REST_API_URL, token: process.env.KV_REST_API_TOKEN });
+    }
+    if (process.env.REDIS_URL) {
+        try {
+            const parsed = new URL(process.env.REDIS_URL);
+            return createClient({ url: `https://${parsed.hostname}`, token: parsed.password });
+        } catch (e) { /* 파싱 실패 */ }
+    }
+    return null;
+}
 
 export default async function handler(req, res) {
+    const kv = getKV();
     // CORS 처리
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');

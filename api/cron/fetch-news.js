@@ -1,7 +1,29 @@
 // /api/cron/fetch-news — GitHub Actions에서 호출하는 크론 전용 API
 // RSS를 파싱하여 Vercel KV에 저장합니다.
 
-import { kv } from '@vercel/kv';
+import { createClient } from '@vercel/kv';
+
+// REDIS_URL에서 REST API 자격증명 자동 추출
+function getKV() {
+    if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN) {
+        return createClient({
+            url: process.env.KV_REST_API_URL,
+            token: process.env.KV_REST_API_TOKEN,
+        });
+    }
+    if (process.env.REDIS_URL) {
+        try {
+            const parsed = new URL(process.env.REDIS_URL);
+            return createClient({
+                url: `https://${parsed.hostname}`,
+                token: parsed.password,
+            });
+        } catch (e) {
+            console.error('[KV] REDIS_URL 파싱 실패:', e.message);
+        }
+    }
+    return null;
+}
 
 // ===== CRON_SECRET 인증 =====
 function verifyCronSecret(req) {
@@ -286,6 +308,11 @@ export default async function handler(req, res) {
 
     try {
         console.log('[크론] RSS → KV 뉴스 수집 시작...');
+
+        const kv = getKV();
+        if (!kv) {
+            return res.status(500).json({ success: false, error: 'KV 연결 실패: REDIS_URL 또는 KV 환경변수가 없습니다.' });
+        }
 
         // 1. 기존 KV 데이터 가져오기
         const existing = (await kv.get(KV_KEY)) || {};
