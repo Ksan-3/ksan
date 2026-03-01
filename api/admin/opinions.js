@@ -1,21 +1,16 @@
-import { createClient } from '@vercel/kv';
+import Redis from 'ioredis';
 
-// REDIS_URL에서 REST API 자격증명 자동 추출
-function getKV() {
-    if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN) {
-        return createClient({ url: process.env.KV_REST_API_URL, token: process.env.KV_REST_API_TOKEN });
+let redis;
+function getRedis() {
+    if (!redis) {
+        const url = process.env.REDIS_URL;
+        if (!url) return null;
+        redis = new Redis(url, { maxRetriesPerRequest: 1, connectTimeout: 5000, lazyConnect: true });
     }
-    if (process.env.REDIS_URL) {
-        try {
-            const parsed = new URL(process.env.REDIS_URL);
-            return createClient({ url: `https://${parsed.hostname}`, token: parsed.password });
-        } catch (e) { /* 파싱 실패 */ }
-    }
-    return null;
+    return redis;
 }
 
 export default async function handler(req, res) {
-    const kv = getKV();
     // CORS 처리
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
@@ -26,15 +21,22 @@ export default async function handler(req, res) {
     }
 
     try {
+        const client = getRedis();
+        if (!client) {
+            return res.status(500).json({ success: false, error: 'Redis 연결 실패' });
+        }
+        await client.connect().catch(() => { });
+
         if (req.method === 'GET') {
-            const opinions = (await kv.get('expert_opinions')) || {};
+            const raw = await client.get('expert_opinions');
+            const opinions = raw ? JSON.parse(raw) : {};
             return res.status(200).json({ success: true, data: opinions });
         }
 
         if (req.method === 'POST') {
             const { articleId, customContent, password } = req.body;
 
-            // 관리자 비밀번호 검증 (실제 운영 시 Vercel 환경변수 사용 권장)
+            // 관리자 비밀번호 검증
             const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || '1234';
             if (password !== ADMIN_PASSWORD) {
                 return res.status(401).json({ success: false, error: 'Authorization failed' });
@@ -45,7 +47,8 @@ export default async function handler(req, res) {
             }
 
             // 기존 의견 가져오기
-            const opinions = (await kv.get('expert_opinions')) || {};
+            const raw = await client.get('expert_opinions');
+            const opinions = raw ? JSON.parse(raw) : {};
 
             // 의견 추가/수정
             opinions[articleId] = {
@@ -53,7 +56,7 @@ export default async function handler(req, res) {
                 updatedAt: new Date().toISOString()
             };
 
-            await kv.set('expert_opinions', opinions);
+            await client.set('expert_opinions', JSON.stringify(opinions));
             return res.status(200).json({ success: true, message: 'Opinion saved successfully' });
         }
 

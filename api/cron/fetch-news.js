@@ -1,28 +1,21 @@
 // /api/cron/fetch-news — GitHub Actions에서 호출하는 크론 전용 API
-// RSS를 파싱하여 Vercel KV에 저장합니다.
+// RSS를 파싱하여 Redis에 저장합니다.
 
-import { createClient } from '@vercel/kv';
+import Redis from 'ioredis';
 
-// REDIS_URL에서 REST API 자격증명 자동 추출
-function getKV() {
-    if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN) {
-        return createClient({
-            url: process.env.KV_REST_API_URL,
-            token: process.env.KV_REST_API_TOKEN,
+// Redis 연결
+let redis;
+function getRedis() {
+    if (!redis) {
+        const url = process.env.REDIS_URL;
+        if (!url) return null;
+        redis = new Redis(url, {
+            maxRetriesPerRequest: 2,
+            connectTimeout: 8000,
+            lazyConnect: true,
         });
     }
-    if (process.env.REDIS_URL) {
-        try {
-            const parsed = new URL(process.env.REDIS_URL);
-            return createClient({
-                url: `https://${parsed.hostname}`,
-                token: parsed.password,
-            });
-        } catch (e) {
-            console.error('[KV] REDIS_URL 파싱 실패:', e.message);
-        }
-    }
-    return null;
+    return redis;
 }
 
 // ===== CRON_SECRET 인증 =====
@@ -307,15 +300,18 @@ export default async function handler(req, res) {
     }
 
     try {
-        console.log('[크론] RSS → KV 뉴스 수집 시작...');
+        console.log('[크론] RSS → Redis 뉴스 수집 시작...');
 
-        const kv = getKV();
-        if (!kv) {
-            return res.status(500).json({ success: false, error: 'KV 연결 실패: REDIS_URL 또는 KV 환경변수가 없습니다.' });
+        const client = getRedis();
+        if (!client) {
+            return res.status(500).json({ success: false, error: 'Redis 연결 실패: REDIS_URL 환경변수가 없습니다.' });
         }
 
-        // 1. 기존 KV 데이터 가져오기
-        const existing = (await kv.get(KV_KEY)) || {};
+        await client.connect().catch(() => { });
+
+        // 1. 기존 Redis 데이터 가져오기
+        const raw = await client.get(KV_KEY);
+        const existing = raw ? JSON.parse(raw) : {};
 
         // 2. 모든 카테고리 병렬 수집
         const categories = Object.keys(CATEGORY_CONFIG);
@@ -350,11 +346,11 @@ export default async function handler(req, res) {
             console.log(`[크론] ${cat}: +${uniqueNew.length}개 (총 ${merged.length}개)`);
         }
 
-        // 4. KV에 저장
-        await kv.set(KV_KEY, existing);
+        // 4. Redis에 저장
+        await client.set(KV_KEY, JSON.stringify(existing));
 
         // 5. 마지막 업데이트 시간 저장
-        await kv.set('news_last_updated', new Date().toISOString());
+        await client.set('news_last_updated', new Date().toISOString());
 
         console.log(`[크론] 완료! 새 기사 ${totalNew}개 추가됨`);
 

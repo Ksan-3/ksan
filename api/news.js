@@ -1,30 +1,21 @@
-// /api/news — Vercel KV에서 뉴스 데이터를 읽어 반환
-// 크론(/api/cron/fetch-news)이 KV에 저장한 데이터를 읽기만 합니다.
+// /api/news — Redis에서 뉴스 데이터를 읽어 반환
+// 크론(/api/cron/fetch-news)이 Redis에 저장한 데이터를 읽기만 합니다.
 
-import { createClient } from '@vercel/kv';
+import Redis from 'ioredis';
 
-// REDIS_URL에서 REST API 자격증명 자동 추출
-function getKV() {
-    // 1순위: KV 전용 환경변수
-    if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN) {
-        return createClient({
-            url: process.env.KV_REST_API_URL,
-            token: process.env.KV_REST_API_TOKEN,
+// Redis 연결 (REDIS_URL 환경변수 사용)
+let redis;
+function getRedis() {
+    if (!redis) {
+        const url = process.env.REDIS_URL;
+        if (!url) return null;
+        redis = new Redis(url, {
+            maxRetriesPerRequest: 1,
+            connectTimeout: 5000,
+            lazyConnect: true,
         });
     }
-    // 2순위: REDIS_URL에서 파싱 (Upstash rediss://default:TOKEN@HOST:PORT)
-    if (process.env.REDIS_URL) {
-        try {
-            const parsed = new URL(process.env.REDIS_URL);
-            return createClient({
-                url: `https://${parsed.hostname}`,
-                token: parsed.password,
-            });
-        } catch (e) {
-            console.error('[KV] REDIS_URL 파싱 실패:', e.message);
-        }
-    }
-    return null;
+    return redis;
 }
 
 const KV_KEY = 'news_articles';
@@ -41,30 +32,26 @@ export default async function handler(req, res) {
     }
 
     try {
-        const kv = getKV();
-        if (!kv) {
+        const client = getRedis();
+        if (!client) {
             return res.status(200).json({
-                success: true,
-                data: [],
-                lastUpdate: null,
-                count: 0,
-                source: 'no-kv',
+                success: true, data: [], lastUpdate: null, count: 0, source: 'no-redis',
             });
         }
 
-        // KV에서 뉴스 데이터 읽기
-        const newsData = await kv.get(KV_KEY);
-        const lastUpdate = await kv.get('news_last_updated');
+        await client.connect().catch(() => { });
 
-        if (!newsData || Object.keys(newsData).length === 0) {
+        // Redis에서 뉴스 데이터 읽기
+        const raw = await client.get(KV_KEY);
+        const lastUpdate = await client.get('news_last_updated');
+
+        if (!raw) {
             return res.status(200).json({
-                success: true,
-                data: [],
-                lastUpdate: null,
-                count: 0,
-                source: 'empty',
+                success: true, data: [], lastUpdate: null, count: 0, source: 'empty',
             });
         }
+
+        const newsData = JSON.parse(raw);
 
         // 모든 카테고리의 기사를 플랫 배열로 합치기
         const allArticles = [];
@@ -82,17 +69,13 @@ export default async function handler(req, res) {
             data: allArticles,
             lastUpdate: lastUpdate || null,
             count: allArticles.length,
-            source: 'kv',
+            source: 'redis',
         });
     } catch (err) {
-        console.error('[뉴스API] KV 읽기 오류:', err);
+        console.error('[뉴스API] Redis 읽기 오류:', err.message);
         return res.status(200).json({
-            success: true,
-            data: [],
-            lastUpdate: null,
-            count: 0,
-            source: 'error',
-            error: err.message,
+            success: true, data: [], lastUpdate: null, count: 0,
+            source: 'error', error: err.message,
         });
     }
 }
