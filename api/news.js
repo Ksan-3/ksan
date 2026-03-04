@@ -1,18 +1,22 @@
 // /api/news — Redis에서 뉴스 데이터를 읽어 반환
-// 크론(/api/cron/fetch-news)이 Redis에 저장한 데이터를 읽기만 합니다.
+// 크론(/api/cron/generate-articles)이 Redis에 저장한 데이터를 읽기만 합니다.
 
 import Redis from 'ioredis';
 
-// Redis 연결 (REDIS_URL 환경변수 사용)
+// Redis 연결 (REDIS_URL 또는 KV_URL 환경변수 사용)
 let redis;
 function getRedis() {
     if (!redis) {
-        const url = process.env.REDIS_URL;
-        if (!url) return null;
+        const url = process.env.REDIS_URL || process.env.KV_URL;
+        if (!url) {
+            console.log('[뉴스API] Redis URL 환경변수 없음 (REDIS_URL, KV_URL 모두 미설정)');
+            return null;
+        }
         redis = new Redis(url, {
             maxRetriesPerRequest: 1,
             connectTimeout: 5000,
             lazyConnect: true,
+            tls: url.startsWith('rediss://') ? { rejectUnauthorized: false } : undefined,
         });
     }
     return redis;
@@ -35,7 +39,9 @@ export default async function handler(req, res) {
         const client = getRedis();
         if (!client) {
             return res.status(200).json({
-                success: true, data: [], lastUpdate: null, count: 0, source: 'no-redis',
+                success: true, data: [], lastUpdate: null, count: 0,
+                source: 'no-redis',
+                debug: 'REDIS_URL 또는 KV_URL 환경변수를 Vercel 대시보드에서 설정하세요.',
             });
         }
 
@@ -47,7 +53,9 @@ export default async function handler(req, res) {
 
         if (!raw) {
             return res.status(200).json({
-                success: true, data: [], lastUpdate: null, count: 0, source: 'empty',
+                success: true, data: [], lastUpdate: null, count: 0,
+                source: 'empty',
+                debug: 'Redis에 데이터가 없습니다. /api/cron/generate-articles를 먼저 호출하세요.',
             });
         }
 

@@ -31,6 +31,17 @@ export default function ArticlePage() {
     const catStyle = CATEGORY_STYLES[article.category] || {};
     const formatDate = (d) => { try { return new Date(d).toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' }); } catch { return ''; } };
 
+    // XSS 방지: 위험한 태그와 이벤트 핸들러 제거
+    const sanitizeHtml = (html) => {
+        return html
+            .replace(/<script[\s\S]*?<\/script>/gi, '')
+            .replace(/<iframe[\s\S]*?<\/iframe>/gi, '')
+            .replace(/<object[\s\S]*?<\/object>/gi, '')
+            .replace(/<embed[\s\S]*?\/?>/gi, '')
+            .replace(/\son\w+\s*=\s*["'][^"']*["']/gi, '')
+            .replace(/javascript\s*:/gi, '');
+    };
+
     // 본문 HTML에서 두 번째 </p> 이후에 광고 삽입
     const insertAdInContent = (html) => {
         const parts = html.split('</p>');
@@ -45,7 +56,7 @@ export default function ArticlePage() {
         if (article.articleContent) {
             return (
                 <>
-                    <div className="article-content" dangerouslySetInnerHTML={{ __html: insertAdInContent(article.articleContent) }} />
+                    <div className="article-content" dangerouslySetInnerHTML={{ __html: sanitizeHtml(insertAdInContent(article.articleContent)) }} />
                     <AdSlot type="inline" className="my-10" />
                 </>
             );

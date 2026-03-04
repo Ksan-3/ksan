@@ -42,7 +42,7 @@ export default function AboutPage() {
                     <h2>📬 문의하기</h2>
                     <p>사이트 이용에 관한 문의, 제휴 제안, 콘텐츠 관련 피드백은 아래 이메일로 보내주세요.</p>
                     <ul>
-                        <li><strong>이메일:</strong> contact@dailyfinancepick.com</li>
+                        <li><strong>이메일:</strong> contact@investment-pick.co.kr</li>
                     </ul>
                 </div>
             </main>

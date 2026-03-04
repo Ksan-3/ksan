@@ -1,4 +1,4 @@
-name: 뉴스 자동 수집 (매일 오전 9시)
+name: AI 기사 자동 생성 (매일 오전 9시)
 
 on:
   schedule:
@@ -7,17 +7,17 @@ on:
   workflow_dispatch: # 수동 실행도 가능
 
 jobs:
-  fetch-news:
+  generate-articles:
     runs-on: ubuntu-latest
     steps:
-      - name: 📰 일일 뉴스 수집 → Vercel KV 저장
+      - name: 📰 AI 기사 생성 → Vercel KV 저장
         run: |
-          echo "🕐 일일 뉴스 수집 시작: $(date)"
+          echo "🕐 AI 기사 생성 시작: $(date)"
           
-          # Vercel에 배포된 크론 API 호출
+          # Vercel에 배포된 AI 기사 생성 API 호출
           RESPONSE=$(curl -s -w "\n%{http_code}" \
             -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
-            "${{ secrets.SITE_URL }}/api/cron/fetch-news")
+            "${{ secrets.SITE_URL }}/api/cron/generate-articles")
           
           HTTP_CODE=$(echo "$RESPONSE" | tail -1)
           BODY=$(echo "$RESPONSE" | sed '$d')
@@ -26,8 +26,8 @@ jobs:
           echo "📄 응답: $BODY"
           
           if [ "$HTTP_CODE" != "200" ]; then
-            echo "❌ 수집 실패"
+            echo "❌ 기사 생성 실패"
             exit 1
           fi
           
-          echo "✅ 일일 뉴스 수집 → KV 저장 완료!"
+          echo "✅ AI 기사 생성 → KV 저장 완료!"
