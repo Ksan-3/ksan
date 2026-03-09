@@ -47,7 +47,7 @@ async function fetchNewsFromRSS(query) {
 
         for (const itemXml of itemMatches.slice(0, 5)) {
             const getTag = (tag) => {
-                const match = itemXml.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`, 'i'));
+                const match = itemXml.match(new RegExp(`<${tag}[^>]*>([\s\S]*?)<\/${tag}>`, 'i'));
                 return match ? match[1].replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1').trim() : '';
             };
             items.push({

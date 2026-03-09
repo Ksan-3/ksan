@@ -10,11 +10,30 @@ jobs:
   generate-articles:
     runs-on: ubuntu-latest
     steps:
-      - name: 📰 AI 기사 생성 → Vercel KV 저장
+      - name: 📰 RSS 뉴스 수집 → Vercel KV 저장
+        run: |
+          echo "🕐 RSS 뉴스 수집 시작: $(date)"
+          
+          RESPONSE=$(curl -s -w "\n%{http_code}" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            "${{ secrets.SITE_URL }}/api/cron/fetch-news")
+          
+          HTTP_CODE=$(echo "$RESPONSE" | tail -1)
+          BODY=$(echo "$RESPONSE" | sed '$d')
+          
+          echo "📡 응답 코드: $HTTP_CODE"
+          echo "📄 응답: $BODY"
+          
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "⚠️ RSS 수집 실패 (계속 진행)"
+          else
+            echo "✅ RSS 뉴스 수집 완료!"
+          fi
+
+      - name: 🤖 AI 기사 생성 → Vercel KV 저장
         run: |
           echo "🕐 AI 기사 생성 시작: $(date)"
           
-          # Vercel에 배포된 AI 기사 생성 API 호출
           RESPONSE=$(curl -s -w "\n%{http_code}" \
             -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
             "${{ secrets.SITE_URL }}/api/cron/generate-articles")
@@ -26,7 +45,7 @@ jobs:
           echo "📄 응답: $BODY"
           
           if [ "$HTTP_CODE" != "200" ]; then
-            echo "❌ 기사 생성 실패"
+            echo "❌ AI 기사 생성 실패"
             exit 1
           fi
           

@@ -7,12 +7,13 @@ import Redis from 'ioredis';
 let redis;
 function getRedis() {
     if (!redis) {
-        const url = process.env.REDIS_URL;
+        const url = process.env.REDIS_URL || process.env.KV_URL;
         if (!url) return null;
         redis = new Redis(url, {
             maxRetriesPerRequest: 2,
             connectTimeout: 8000,
             lazyConnect: true,
+            tls: url.startsWith('rediss://') ? { rejectUnauthorized: false } : undefined,
         });
     }
     return redis;
@@ -42,7 +43,7 @@ async function parseRSS(url) {
 
         for (const itemXml of itemMatches.slice(0, 8)) {
             const getTag = (tag) => {
-                const match = itemXml.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`, 'i'));
+                const match = itemXml.match(new RegExp(`<${tag}[^>]*>([\s\S]*?)<\/${tag}>`, 'i'));
                 return match ? match[1].replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1').trim() : '';
             };
             items.push({
@@ -149,7 +150,8 @@ function buildGoogleNewsUrl(query) {
 
 // ===== 불릿 요약 생성 =====
 function generateBullets(title, description, category) {
-    const text = description || title;
+    const desc = description || '';
+    const text = desc || title;
     const sentences = text.split(/[.!?。]\s*/).filter(s => s.length > 5);
 
     const defaults = {
@@ -162,7 +164,7 @@ function generateBullets(title, description, category) {
 
     return [
         { type: 'context', label: '현상', text: (sentences[0] || title).slice(0, 120) },
-        { type: 'core', label: '핵심', text: (sentences[1] || description.slice(0, 80)).slice(0, 120) },
+        { type: 'core', label: '핵심', text: (sentences[1] || desc.slice(0, 80) || title.slice(0, 80)).slice(0, 120) },
         { type: 'action', label: '전략', text: (sentences[2] || defaults[category] || '최신 동향 체크 후 대응').slice(0, 120) },
     ];
 }
