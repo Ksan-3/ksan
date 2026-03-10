@@ -10,6 +10,82 @@ function a(id, cat, title, img, b1, b2, b3, content, date) {
 }
 
 export const usStockData = [
+    // === 2026-03-10 신규 기사 ===
+    a('us8', 'us-stock',
+        '애플 AI 아이폰 18 효과 💥 매출 $124B 사상 최고',
+        null,
+        '3/6 발표: FY2026 Q2 매출 $124.3B, 전년비 +18%',
+        'AI 기능 탑재 아이폰 18 판매 폭발, 서비스 매출 $26B 신기록',
+        'AAPL $210 이하 분할 매수, AI 생태계 확장 수혜',
+        `<p class="text-xl font-black mb-6">애플 AI 아이폰이 실적을 터뜨렸다 💥🔥</p>
+        <div class="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-5 mb-8 border-l-4 border-blue-500">
+            <p class="text-lg font-bold text-blue-700 dark:text-blue-300">📌 실적 핵심 숫자</p>
+            <p class="text-2xl font-black">매출 $124.3B(+18%) · 아이폰 $71.2B(+23%)</p>
+            <p class="text-base mt-2">서비스 매출: <strong>$26B</strong> 역대 최고</p>
+        </div>
+        <h3 class="text-xl font-black mt-8 mb-4">📊 무슨 일이야?</h3>
+        <p class="mb-4 text-lg leading-relaxed">애플이 AI를 본격 탑재한 아이폰 18 시리즈가 글로벌에서 폭발적 판매를 기록. 특히 Apple Intelligence 기능이 중국·인도 시장에서 대히트. 아이폰 매출 $71.2B로 전년비 23% 급증.</p>
+        <p class="mb-6 text-lg leading-relaxed">팀 쿡 CEO: "AI가 애플 생태계의 새로운 시대를 열고 있다." 서비스 부문(앱스토어·애플TV+·애플뮤직)도 $26B로 사상 최고치 경신.</p>
+        <h3 class="text-xl font-black mt-8 mb-4">💡 지금 어떻게 해?</h3>
+        <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 mb-6">
+            <ul class="space-y-3 text-base">
+                <li>✅ <strong>AAPL</strong> — $210 이하에서 분할 매수 적극 검토</li>
+                <li>✅ <strong>서비스 매출</strong> 고마진 성장 → 장기 홀딩 매력 ↑</li>
+                <li>⚠️ 실적 발표 직후 변동성 주의 — 추격 매수 자제</li>
+            </ul>
+        </div>`,
+        '2026-03-10T09:00:00+09:00'),
+
+    a('us9', 'us-stock',
+        '연준 3월 금리 동결 📊 "6월 인하 시사" 파월 발언',
+        null,
+        '3/8 FOMC: 기준금리 4.25~4.50% 동결, 만장일치',
+        '파월 의장 "6월 인하 가능성 열려있다" — 시장 환호',
+        '기술주·성장주 비중 확대, 금리 인하 수혜주 주목',
+        `<p class="text-xl font-black mb-6">파월이 드디어 힌트를 줬다 📊💰</p>
+        <div class="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-5 mb-8 border-l-4 border-blue-500">
+            <p class="text-lg font-bold text-blue-700 dark:text-blue-300">📌 FOMC 핵심</p>
+            <p class="text-2xl font-black">금리 4.25~4.50% 동결 · 6월 인하 시사</p>
+            <p class="text-base mt-2">점도표: 연내 <strong>2회 인하</strong> 전망 우세</p>
+        </div>
+        <h3 class="text-xl font-black mt-8 mb-4">📊 의미</h3>
+        <p class="mb-4 text-lg leading-relaxed">3월 FOMC에서 예상대로 금리를 동결했지만, 파월 의장이 기자회견에서 "6월 인하 가능성이 열려있다"고 발언하면서 시장이 환호. 나스닥 +2.1% 급등.</p>
+        <p class="mb-6 text-lg leading-relaxed">점도표(dot plot)에서는 연내 2회 인하가 다수 의견으로 나타남. 인플레이션이 2.5% 수준으로 안정되면서 연준의 스탠스가 확실히 비둘기파로 전환 중.</p>
+        <h3 class="text-xl font-black mt-8 mb-4">💡 투자 전략</h3>
+        <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 mb-6">
+            <ul class="space-y-3 text-base">
+                <li>✅ 금리 인하 수혜주: <strong>기술주·리츠·성장주</strong> 비중 확대</li>
+                <li>✅ QQQ·VGT 등 기술주 ETF 분할 매수</li>
+                <li>⚠️ 6월까지 경제지표 따라 변동성 → 분할 접근</li>
+            </ul>
+        </div>`,
+        '2026-03-10T09:00:00+09:00'),
+
+    a('us10', 'us-stock',
+        '테슬라 로보택시 10개 도시 확대 🚗 주가 +15% 폭등',
+        null,
+        '테슬라 로보택시 텍사스 이어 캘리포니아 등 10개 도시 확대',
+        'FSD V14 업데이트 완료, 월 구독 $99 모델 공개',
+        'TSLA 모빌리티 플랫폼 재평가 — 중장기 관점 매수',
+        `<p class="text-xl font-black mb-6">테슬라 로보택시 10개 도시로 확대! 🚗💨</p>
+        <div class="bg-purple-50 dark:bg-purple-900/20 rounded-2xl p-5 mb-8 border-l-4 border-purple-500">
+            <p class="text-lg font-bold text-purple-700 dark:text-purple-300">📌 핵심</p>
+            <p class="text-base">로보택시 <strong>10개 도시</strong> 확대 · FSD V14 · 월 $99 구독</p>
+        </div>
+        <h3 class="text-xl font-black mt-8 mb-4">📊 상황</h3>
+        <p class="mb-4 text-lg leading-relaxed">테슬라가 로보택시 서비스를 텍사스에서 시작한 지 2주 만에 캘리포니아, 플로리다, 애리조나 등 10개 도시로 확대 발표. FSD V14 업데이트로 사고율이 인간 운전자 대비 80% 감소.</p>
+        <p class="mb-6 text-lg leading-relaxed">머스크 CEO는 "2026년 말까지 50개 도시"를 목표로 제시. 월 $99 구독 모델로 일반 소비자도 자기 차를 로보택시로 운영 가능.</p>
+        <h3 class="text-xl font-black mt-8 mb-4">💡 투자 포인트</h3>
+        <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 mb-6">
+            <ul class="space-y-3 text-base">
+                <li>✅ 자동차 회사 → <strong>모빌리티 플랫폼</strong> 전환 본격화</li>
+                <li>✅ 구독 모델 = 반복 수익 → 밸류에이션 리레이팅</li>
+                <li>⚠️ 규제 리스크 + 변동성 여전 — 분할 매수 필수</li>
+            </ul>
+        </div>`,
+        '2026-03-10T09:00:00+09:00'),
+
+    // === 기존 기사 (2026-02-26) ===
     a('us1', 'us-stock',
         'NVIDIA 매출 $68.1B 폭발 🔥 역대 최고 분기 실적',
         null,

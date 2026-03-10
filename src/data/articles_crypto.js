@@ -1,15 +1,90 @@
-function a(id, cat, title, img, b1, b2, b3, content) {
+function a(id, cat, title, img, b1, b2, b3, content, date) {
     const uniqueImg = `https://picsum.photos/seed/${id}/800/600`;
     return {
         id, category: cat, title, image: uniqueImg, bullets: [
             { type: 'context', label: '현상', text: b1 },
             { type: 'core', label: '핵심', text: b2 },
             { type: 'action', label: '전략', text: b3 },
-        ], pubDate: new Date().toISOString(), articleContent: content
+        ], pubDate: date || '2026-03-10T09:00:00+09:00', articleContent: content
     };
 }
 
 export const cryptoData = [
+    // === 2026-03-10 신규 기사 ===
+    a('cr8', 'crypto',
+        '비트코인 $95K 돌파 🚀 기관 매수세 역대 최대!',
+        null,
+        'BTC $95,240 — 24시간 +4.2%, 국내 1억 3,800만원',
+        'ETF 일일 순유입 $1.2B 역대 최고, 기관화 가속',
+        '추격 매수 금지, $90K 지지 확인 후 분할 매수',
+        `<p class="text-xl font-black mb-6">비트코인 $95K 돌파! 기관이 쓸어담고 있다 🚀</p>
+        <div class="bg-orange-50 dark:bg-orange-900/20 rounded-2xl p-5 mb-8 border-l-4 border-orange-500">
+            <p class="text-lg font-bold text-orange-700 dark:text-orange-300">📌 오늘 시세 (3/10)</p>
+            <p class="text-2xl font-black">BTC $95,240(+4.2%) · 국내 1억 3,800만원</p>
+            <p class="text-base mt-1">ETF 일일 순유입: <strong>$1.2B</strong> 역대 최고!</p>
+        </div>
+        <h3 class="text-xl font-black mt-8 mb-4">📊 왜 올랐어?</h3>
+        <p class="mb-4 text-lg leading-relaxed">블랙록·피델리티 등 대형 운용사의 비트코인 ETF에 기관 자금이 역대 최대 규모로 유입 중. 하루 만에 $1.2B 순유입은 ETF 출시 이후 최고 기록.</p>
+        <p class="mb-6 text-lg leading-relaxed">연준의 6월 금리 인하 시사 → 위험자산 선호 심리 강화 → 비트코인이 가장 큰 수혜. $100K 돌파 기대감 최고조.</p>
+        <h3 class="text-xl font-black mt-8 mb-4">💡 전략</h3>
+        <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 mb-6">
+            <ul class="space-y-3 text-base">
+                <li>✅ 지지선: $90,000 · $87,500 · $84,200</li>
+                <li>✅ 저항선: $97,500 · $100,000 · $105,000</li>
+                <li>⚠️ $95K 위에서 FOMO 매수 금지 → 조정 시 분할</li>
+            </ul>
+        </div>`,
+        '2026-03-10T09:00:00+09:00'),
+
+    a('cr9', 'crypto',
+        '이더리움 ETF 승인 기대감 ⚡ ETH $4,200 돌파',
+        null,
+        '이더리움 현물 ETF 추가 승인 임박, SEC 긍정적 검토',
+        'ETH $4,200 돌파, DeFi TVL $120B 사상 최고',
+        'ETH $4,000 이하 분할 매수, 스테이킹 병행',
+        `<p class="text-xl font-black mb-6">이더리움 ETF 추가 승인 온다! ⚡</p>
+        <div class="bg-orange-50 dark:bg-orange-900/20 rounded-2xl p-5 mb-8 border-l-4 border-orange-500">
+            <p class="text-lg font-bold text-orange-700 dark:text-orange-300">📌 핵심</p>
+            <p class="text-2xl font-black">ETH $4,200 · DeFi TVL $120B 역대 최고</p>
+        </div>
+        <h3 class="text-xl font-black mt-8 mb-4">📊 상황</h3>
+        <p class="mb-4 text-lg leading-relaxed">SEC가 이더리움 현물 ETF에 대해 추가 운용사(반에크, 위즈덤트리) 승인을 긍정적으로 검토 중이라는 보도가 나오면서 ETH 급등. DeFi 생태계 TVL도 $120B로 사상 최고.</p>
+        <p class="mb-6 text-lg leading-relaxed">이더리움은 AI 에이전트 플랫폼으로도 주목받으며, L2(Base, Arbitrum) 트랜잭션이 메인넷의 10배를 기록 중.</p>
+        <h3 class="text-xl font-black mt-8 mb-4">💡 전략</h3>
+        <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 mb-6">
+            <ul class="space-y-3 text-base">
+                <li>✅ ETH $4,000 이하에서 분할 매수</li>
+                <li>✅ 장기 홀딩 + 스테이킹(연 4~5%)으로 수익 극대화</li>
+                <li>⚠️ ETF 승인 무산 시 급락 가능 — 리스크 관리</li>
+            </ul>
+        </div>`,
+        '2026-03-10T09:00:00+09:00'),
+
+    a('cr10', 'crypto',
+        '솔라나 AI 에이전트 생태계 폭발 🤖 SOL $250 돌파',
+        null,
+        '솔라나 기반 AI 에이전트 프로젝트 100개 돌파',
+        'SOL 네트워크 TPS 65,000 달성, 이더리움 대비 1000배 빠름',
+        'SOL $230 이하 분할 매수, AI × 블록체인 내러티브',
+        `<p class="text-xl font-black mb-6">솔라나가 AI 에이전트의 허브가 되고 있다 🤖</p>
+        <div class="bg-orange-50 dark:bg-orange-900/20 rounded-2xl p-5 mb-8 border-l-4 border-orange-500">
+            <p class="text-lg font-bold text-orange-700 dark:text-orange-300">📌 핵심</p>
+            <p class="text-base">AI 에이전트 프로젝트 <strong>100개+</strong> · TPS <strong>65,000</strong></p>
+        </div>
+        <h3 class="text-xl font-black mt-8 mb-4">📊 왜 주목해야 해?</h3>
+        <p class="mb-4 text-lg leading-relaxed">솔라나 블록체인 위에서 자율적으로 동작하는 AI 에이전트 프로젝트가 100개를 돌파. 자동 트레이딩, DeFi 최적화, NFT 큐레이션까지 AI가 온체인으로 수행하는 시대.</p>
+        <p class="mb-6 text-lg leading-relaxed">솔라나의 압도적 속도(TPS 65,000)가 AI 에이전트에 최적화된 환경을 제공. "AI × 블록체인" 내러티브의 핵심 수혜.</p>
+        <h3 class="text-xl font-black mt-8 mb-4">💡 전략</h3>
+        <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 mb-6">
+            <ul class="space-y-3 text-base">
+                <li>✅ SOL 장기 홀딩 관점에서 $230 이하 분할 매수</li>
+                <li>✅ AI 에이전트 토큰은 소액으로만 — 고위험 고수익</li>
+                <li>⚠️ 밈코인·단타 올인 절대 금지</li>
+            </ul>
+        </div>`,
+        '2026-03-10T09:00:00+09:00'),
+
+    // === 기존 기사 (2026-02-26) ===
     a('cr1', 'crypto', '비트코인 $68K 돌파 🚀 숏 포지션 $4억 청산!', null,
         'BTC $68,342 — 24시간 +6.83%, 국내 9,940만원',
         '숏 포지션 $4억 청산, 서클 USDC 실적 호조 배경',

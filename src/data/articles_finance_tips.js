@@ -1,15 +1,72 @@
-function a(id, cat, title, img, b1, b2, b3, content) {
+function a(id, cat, title, img, b1, b2, b3, content, date) {
     const uniqueImg = `https://picsum.photos/seed/${id}/800/600`;
     return {
         id, category: cat, title, image: uniqueImg, bullets: [
             { type: 'context', label: '현상', text: b1 },
             { type: 'core', label: '핵심', text: b2 },
             { type: 'action', label: '전략', text: b3 },
-        ], pubDate: new Date().toISOString(), articleContent: content
+        ], pubDate: date || '2026-03-10T09:00:00+09:00', articleContent: content
     };
 }
 
 export const financeTipsData = [
+    // === 2026-03-10 신규 기사 ===
+    a('ft8', 'finance-tips', '2026 청년도약계좌 혜택 업그레이드 💰 정부 매칭 확대', null,
+        '청년도약계좌 정부 매칭 기여금 최대 월 4만원으로 확대',
+        '5년 만기 시 최대 5,000만원 수령 가능 (비과세)',
+        '미가입자 즉시 가입, 기존 가입자 한도 조정 확인',
+        `<p class="text-xl font-black mb-6">청년도약계좌 혜택이 더 좋아졌다! 💰🎉</p>
+        <div class="bg-amber-50 dark:bg-amber-900/20 rounded-2xl p-5 mb-8 border-l-4 border-amber-500">
+            <p class="text-lg font-bold text-amber-700 dark:text-amber-300">📌 변경 사항</p>
+            <p class="text-2xl font-black">정부 매칭 월 4만원 · 5년 후 최대 5,000만원</p>
+            <p class="text-base mt-2">이자소득 <strong>전액 비과세</strong></p>
+        </div>
+        <h3 class="text-xl font-black mt-8 mb-4">💡 지금 당장 할 것</h3>
+        <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 mb-6">
+            <ul class="space-y-3 text-base">
+                <li>✅ 미가입자 → 주거래 은행에서 즉시 가입</li>
+                <li>✅ 기존 가입자 → 납입 한도 상향 조정 확인</li>
+                <li>✅ 여유 자금은 연금저축·IRP와 병행해서 세액공제까지</li>
+            </ul>
+        </div>`, '2026-03-10T09:00:00+09:00'),
+
+    a('ft9', 'finance-tips', 'ISA 계좌 혁명 📊 비과세 한도 1억원으로 확대!', null,
+        '개인종합자산관리계좌(ISA) 비과세 한도 200만→1,000만원',
+        '국내 주식·ETF·예금 통합 관리 + 세제 혜택 극대화',
+        'ISA 중개형 계좌 즉시 개설, ETF 적립식 투자 시작',
+        `<p class="text-xl font-black mb-6">ISA 비과세 한도가 5배로 늘었다! 📊💎</p>
+        <div class="bg-amber-50 dark:bg-amber-900/20 rounded-2xl p-5 mb-8 border-l-4 border-amber-500">
+            <p class="text-lg font-bold text-amber-700 dark:text-amber-300">📌 핵심 변경</p>
+            <p class="text-base">비과세 한도 <strong>200만→1,000만원</strong> · 납입 한도 <strong>1억→2억원</strong></p>
+        </div>
+        <h3 class="text-xl font-black mt-8 mb-4">💡 실행 가이드</h3>
+        <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 mb-6">
+            <ul class="space-y-3 text-base">
+                <li>✅ 증권사에서 ISA 중개형 계좌 즉시 개설</li>
+                <li>✅ S&P500 ETF + KOSPI200 ETF 적립식 투자</li>
+                <li>✅ 3년 의무 가입 후 연금계좌 전환 시 추가 세액공제</li>
+            </ul>
+        </div>`, '2026-03-10T09:00:00+09:00'),
+
+    a('ft10', 'finance-tips', '파킹통장 금리 비교 🏦 어디가 제일 높아? (3월 최신)', null,
+        '파킹통장 최고 금리 토스뱅크 4.0%, 카카오뱅크 3.5%',
+        '비상금은 파킹통장에, 투자금은 CMA에 분리 관리',
+        '비상금 월 생활비 × 6개월 확보 후 나머지 투자',
+        `<p class="text-xl font-black mb-6">파킹통장 금리 비교! 어디가 제일 좋아? 🏦</p>
+        <div class="bg-amber-50 dark:bg-amber-900/20 rounded-2xl p-5 mb-8 border-l-4 border-amber-500">
+            <p class="text-lg font-bold text-amber-700 dark:text-amber-300">📌 3월 금리 순위</p>
+            <p class="text-base">토스뱅크 <strong>4.0%</strong> · 카카오뱅크 <strong>3.5%</strong> · 케이뱅크 <strong>3.3%</strong></p>
+        </div>
+        <h3 class="text-xl font-black mt-8 mb-4">💡 자금 관리 공식</h3>
+        <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 mb-6">
+            <ul class="space-y-3 text-base">
+                <li>✅ 비상금 = 월 생활비 × 6개월 (파킹통장에)</li>
+                <li>✅ 투자금 = 나머지 여유자금 (CMA 또는 ISA에)</li>
+                <li>❌ 적금에 전부 묶어두기 = 비효율적 (금리도 비슷함)</li>
+            </ul>
+        </div>`, '2026-03-10T09:00:00+09:00'),
+
+    // === 기존 기사 (2026-02-26) ===
     a('ft1', 'finance-tips', '월급 200만원으로 1억 모으는 현실 플랜 💰', null,
         '사회초년생 평균 실수령 200만원 시대',
         '50-30-20 법칙 + 청년도약계좌 콤보',
@@ -19,8 +76,6 @@ export const financeTipsData = [
             <p class="text-lg font-bold text-amber-700 dark:text-amber-300">📌 핵심 공식</p>
             <p class="text-base">수입의 50% 생활비 · 30% 저축 · 20% 투자</p>
         </div>
-        <h3 class="text-xl font-black mt-8 mb-4">📊 현실 플랜</h3>
-        <p class="mb-6 text-lg leading-relaxed">매달 60만원 적금 + 청년도약계좌(정부 매칭) + 나머지 40만원 ETF 적립. 3년이면 시드머니 3천만원. 이걸 굴리면 5년 차에 1억 가능.</p>
         <h3 class="text-xl font-black mt-8 mb-4">💡 지금 당장 할 것</h3>
         <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 mb-6">
             <ul class="space-y-3 text-base">

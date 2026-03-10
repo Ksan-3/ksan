@@ -1,15 +1,73 @@
-function a(id, cat, title, img, b1, b2, b3, content) {
+function a(id, cat, title, img, b1, b2, b3, content, date) {
     const uniqueImg = `https://picsum.photos/seed/${id}/800/600`;
     return {
         id, category: cat, title, image: uniqueImg, bullets: [
             { type: 'context', label: '현상', text: b1 },
             { type: 'core', label: '핵심', text: b2 },
             { type: 'action', label: '전략', text: b3 },
-        ], pubDate: new Date().toISOString(), articleContent: content
+        ], pubDate: date || '2026-03-10T09:00:00+09:00', articleContent: content
     };
 }
 
 export const realEstateData = [
+    // === 2026-03-10 신규 기사 ===
+    a('re8', 'real-estate', '서울 아파트 매매가 20주 연속 상승 📈 강남 신고가 행진', null,
+        '서울 아파트 매매가 20주 연속 상승, 강남·서초·용산 주도',
+        '토허제 해제 후 거래량 60% 급증, 매수심리 회복',
+        '실수요자 대출금리 비교 필수, 급매물 선점 전략',
+        `<p class="text-xl font-black mb-6">서울 집값 20주 연속 상승! 강남은 신고가 📈🔥</p>
+        <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 mb-8 border-l-4 border-emerald-500">
+            <p class="text-lg font-bold text-emerald-700 dark:text-emerald-300">📌 핵심 (3/10 기준)</p>
+            <p class="text-2xl font-black">서울 아파트 20주 연속 ↑ · 거래량 60% 급증</p>
+        </div>
+        <h3 class="text-xl font-black mt-8 mb-4">📊 상황</h3>
+        <p class="mb-4 text-lg leading-relaxed">토지거래허가제 해제 이후 강남·서초·용산을 중심으로 매수세가 폭발. 주담대 금리가 4%대로 안정되면서 매수 심리 회복.</p>
+        <h3 class="text-xl font-black mt-8 mb-4">💡 어떻게 해?</h3>
+        <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 mb-6">
+            <ul class="space-y-3 text-base">
+                <li>✅ 실수요자라면 대출금리 비교 후 빠른 의사결정</li>
+                <li>✅ 급매물 선점 — 호가 상승 전에 잡아야</li>
+                <li>⚠️ 투자 목적이면 DSR 규제 감안, 자금 계획 철저히</li>
+            </ul>
+        </div>`, '2026-03-10T09:00:00+09:00'),
+
+    a('re9', 'real-estate', 'GTX-B 착공 확정 🚆 인덕원~별내 수혜 지역 주목', null,
+        'GTX-B 노선 착공 확정, 2030년 개통 목표',
+        '인덕원·의왕·별내 역세권 아파트값 선반영 시작',
+        '착공 초기 단계 — 2차 수혜 지역 선점 타이밍',
+        `<p class="text-xl font-black mb-6">GTX-B 착공 확정! 수혜 지역 어디? 🚆</p>
+        <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 mb-8 border-l-4 border-emerald-500">
+            <p class="text-lg font-bold text-emerald-700 dark:text-emerald-300">📌 핵심</p>
+            <p class="text-base">GTX-B 착공 확정 · 인덕원~별내 · <strong>2030년 개통</strong></p>
+        </div>
+        <h3 class="text-xl font-black mt-8 mb-4">💡 전략</h3>
+        <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 mb-6">
+            <ul class="space-y-3 text-base">
+                <li>✅ 착공 초기 = 선점 타이밍 (GTX-A 사례 참고)</li>
+                <li>✅ 역세권 500m 이내 신축 위주로 검토</li>
+                <li>⚠️ 개통까지 4년 — 장기 투자 관점 필요</li>
+            </ul>
+        </div>`, '2026-03-10T09:00:00+09:00'),
+
+    a('re10', 'real-estate', '전세 시장 급변 🔄 월세 전환 가속화', null,
+        '서울 전세 비중 56%로 하락, 월세 비중 사상 최고',
+        '집주인 월세 선호 + 금리 부담 → 전세 매물 감소',
+        '전세자금대출 금리 비교, 반전세·월세 전환 대비',
+        `<p class="text-xl font-black mb-6">전세가 사라지고 있다? 월세 시대 본격화 🔄</p>
+        <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 mb-8 border-l-4 border-emerald-500">
+            <p class="text-lg font-bold text-emerald-700 dark:text-emerald-300">📌 데이터</p>
+            <p class="text-base">서울 전세 비중 <strong>56%</strong> · 월세 비중 <strong>사상 최고</strong></p>
+        </div>
+        <h3 class="text-xl font-black mt-8 mb-4">💡 체크리스트</h3>
+        <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 mb-6">
+            <ul class="space-y-3 text-base">
+                <li>✅ 전세자금대출 금리 은행별 비교 필수 (최저 3.8%~)</li>
+                <li>✅ 반전세(보증금↑ + 월세↓) 협상 전략 활용</li>
+                <li>⚠️ 전세보증보험 가입 필수 — 깡통전세 주의</li>
+            </ul>
+        </div>`, '2026-03-10T09:00:00+09:00'),
+
+    // === 기존 기사 (2026-02-26) ===
     a('re1', 'real-estate', '서울 강남 3구 신고가 행진 🏢 토허제 해제 효과', null,
         '토지거래허가 해제 후 강남·서초·송파 매수 폭증',
         '강남 아파트 평균 +2.3% 상승, 거래량 40% 급증',
@@ -19,8 +77,6 @@ export const realEstateData = [
             <p class="text-lg font-bold text-emerald-700 dark:text-emerald-300">📌 핵심</p>
             <p class="text-base">토허제 해제 → 강남3구 거래량 <strong>40% 급증</strong>, 평균 +2.3%</p>
         </div>
-        <h3 class="text-xl font-black mt-8 mb-4">📊 상황</h3>
-        <p class="mb-6 text-lg leading-relaxed">토지거래허가제가 해제되자마자 강남·서초·송파에서 매수 문의가 폭증. 대기 수요가 한꺼번에 터져나오는 중.</p>
         <h3 class="text-xl font-black mt-8 mb-4">💡 어떻게 해?</h3>
         <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 mb-6">
             <ul class="space-y-3 text-base">

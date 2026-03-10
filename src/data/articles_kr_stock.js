@@ -10,6 +10,82 @@ function a(id, cat, title, img, b1, b2, b3, content, date) {
 }
 
 export const krStockData = [
+    // === 2026-03-10 신규 기사 ===
+    a('kr8', 'kr-stock',
+        '코스피 3,050 돌파 📈 외국인 7거래일 연속 매수',
+        null,
+        '코스피 3,050선 안착, 외국인 7거래일 연속 순매수 2.3조',
+        'WGBI 편입 확정 + 반도체 수출 호조 → 외국인 자금 유입 가속',
+        '외국인 순매수 상위 종목 추적 + KOSPI ETF 분할 매수',
+        `<p class="text-xl font-black mb-6">코스피가 3,050을 뚫었다! 📈🔥</p>
+        <div class="bg-red-50 dark:bg-red-900/20 rounded-2xl p-5 mb-8 border-l-4 border-red-500">
+            <p class="text-lg font-bold text-red-700 dark:text-red-300">📌 오늘 시황 (3/10)</p>
+            <p class="text-2xl font-black">코스피 3,052 · 외국인 7일 연속 순매수</p>
+            <p class="text-base mt-2">누적 순매수: <strong>2.3조원</strong></p>
+        </div>
+        <h3 class="text-xl font-black mt-8 mb-4">📊 왜 올라?</h3>
+        <p class="mb-4 text-lg leading-relaxed">WGBI(세계국채지수) 편입이 확정되면서 글로벌 채권 자금이 한국으로 유입 중. 여기에 2월 반도체 수출이 전년비 +45% 급증하면서 삼성전자·SK하이닉스가 주도주 역할.</p>
+        <p class="mb-6 text-lg leading-relaxed">원/달러 환율도 1,310원대로 안정되면서 외국인 매수에 우호적 환경. 투자자 예탁금 115조로 역대 최고 → 대기 자금 풍부.</p>
+        <h3 class="text-xl font-black mt-8 mb-4">💡 지금 뭐 해?</h3>
+        <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 mb-6">
+            <ul class="space-y-3 text-base">
+                <li>✅ 외국인 순매수 상위: 삼성전자·하이닉스·현대차</li>
+                <li>✅ KOSPI200 ETF 분할 매수로 시장 전체 동참</li>
+                <li>⚠️ 급등 후 차익실현 매물 주의 — 분산 투자 필수</li>
+            </ul>
+        </div>`,
+        '2026-03-10T09:00:00+09:00'),
+
+    a('kr9', 'kr-stock',
+        'SK하이닉스 HBM4 양산 시작 🚀 목표가 상향 러시',
+        null,
+        'SK하이닉스 HBM4 양산 세계 최초 가동, 엔비디아 독점 납품',
+        '증권사 12곳 목표가 상향, 평균 목표가 28만원',
+        'SK하이닉스 25만원 이하 분할 매수, AI 반도체 대장주',
+        `<p class="text-xl font-black mb-6">SK하이닉스 HBM4 세계 최초 양산! 🚀</p>
+        <div class="bg-red-50 dark:bg-red-900/20 rounded-2xl p-5 mb-8 border-l-4 border-red-500">
+            <p class="text-lg font-bold text-red-700 dark:text-red-300">📌 핵심</p>
+            <p class="text-2xl font-black">HBM4 양산 시작 · 엔비디아 독점 납품</p>
+            <p class="text-base mt-2">증권사 평균 목표가: <strong>28만원</strong></p>
+        </div>
+        <h3 class="text-xl font-black mt-8 mb-4">📊 상황</h3>
+        <p class="mb-4 text-lg leading-relaxed">SK하이닉스가 세계 최초로 HBM4 양산을 시작했다고 공식 발표. 엔비디아 차세대 GPU(블랙웰 울트라)에 독점 납품. 2분기부터 본격 매출 반영 예상.</p>
+        <p class="mb-6 text-lg leading-relaxed">12개 증권사가 목표가를 일제히 상향. 가장 높은 목표가는 KB증권의 32만원. AI 반도체 슈퍼사이클이 계속되고 있다는 증거.</p>
+        <h3 class="text-xl font-black mt-8 mb-4">💡 전략</h3>
+        <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 mb-6">
+            <ul class="space-y-3 text-base">
+                <li>✅ <strong>SK하이닉스</strong> — 25만원 이하 분할 매수</li>
+                <li>✅ AI 반도체 소재·장비주(한미반도체·이오테크닉스)도 주목</li>
+                <li>⚠️ 단기 급등 구간 — 추격 매수보다 조정 시 매수</li>
+            </ul>
+        </div>`,
+        '2026-03-10T09:00:00+09:00'),
+
+    a('kr10', 'kr-stock',
+        '삼성전자 자사주 5조 매입 발표 💎 주주환원 강화',
+        null,
+        '삼성전자 5조원 규모 자사주 매입 발표, 3개월 내 완료',
+        '밸류업 프로그램 일환, 주당 배당금도 +20% 인상',
+        '삼성전자 7만원 이하 매수 기회, 배당+자사주 이중 수혜',
+        `<p class="text-xl font-black mb-6">삼성전자가 자사주 5조를 산다고? 💎</p>
+        <div class="bg-red-50 dark:bg-red-900/20 rounded-2xl p-5 mb-8 border-l-4 border-red-500">
+            <p class="text-lg font-bold text-red-700 dark:text-red-300">📌 주주환원</p>
+            <p class="text-2xl font-black">자사주 5조 매입 + 배당 +20% 인상</p>
+        </div>
+        <h3 class="text-xl font-black mt-8 mb-4">📊 왜 중요해?</h3>
+        <p class="mb-4 text-lg leading-relaxed">삼성전자가 밸류업 프로그램의 일환으로 5조원 규모 자사주 매입을 전격 발표. 3개월 내에 시장에서 직접 매입 후 소각 예정. 주당 배당금도 전년 대비 20% 인상.</p>
+        <p class="mb-6 text-lg leading-relaxed">코리아 디스카운트 해소를 위한 삼성의 강력한 의지 표명. 시가총액 대비 자사주 비중이 높아지면서 주가 하방 지지력 강화.</p>
+        <h3 class="text-xl font-black mt-8 mb-4">💡 투자 포인트</h3>
+        <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 mb-6">
+            <ul class="space-y-3 text-base">
+                <li>✅ 7만원 이하에서 매수 기회 — 자사주 매입이 하방 지지</li>
+                <li>✅ 배당수익률 약 3% + 자사주 소각 = 이중 수혜</li>
+                <li>✅ 반도체 업황 회복 + 밸류업 = 중장기 매력</li>
+            </ul>
+        </div>`,
+        '2026-03-10T09:00:00+09:00'),
+
+    // === 기존 기사 (2026-02-26) ===
     a('kr1', 'kr-stock', '코스피 6,200 돌파 🚀 역사적 신고가 행진!', null,
         '코스피 사상 최고치 6,200 돌파, 장중 6,300까지',
         '엔비디아 발 반도체 랠리 + 외국인 매수세 폭발',
