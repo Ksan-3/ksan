@@ -10,6 +10,75 @@ function a(id, cat, title, img, b1, b2, b3, content, date) {
 }
 
 export const usStockData = [
+    // === 2026-03-11 신규 기사 ===
+    a('us11', 'us-stock',
+        '나스닥 18,500 돌파 최고가 경신 💥 AI 모멘텀 건재',
+        null,
+        '나스닥 사상 최고치 경신, AI 및 소프트웨어 섹터 강세 지속',
+        '연준 금리 인하 기대감과 기술주 실적 호조 시너지',
+        '초대형 기술주 중심 포트폴리오 유지, TIGER 나스닥100 적립식 분할',
+        `<p class="text-xl font-black mb-6">나스닥 끝을 모르고 날아오른다 💥 역대 최고가!</p>
+        <div class="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-5 mb-8 border-l-4 border-blue-500">
+            <p class="text-lg font-bold text-blue-700 dark:text-blue-300">📌 오늘 시황 (3/11)</p>
+            <p class="text-2xl font-black">나스닥 지수 18,500 돌파 · 사상 최고가 경신</p>
+            <p class="text-base mt-2">AI 및 클라우드 기업 중심 랠리</p>
+        </div>
+        <h3 class="text-xl font-black mt-8 mb-4">📊 원인은?</h3>
+        <p class="mb-4 text-lg leading-relaxed">어제 발표된 미국의 2월 물가지표가 시장 예상에 부합하며 연준의 금리 인하 기대감이 높아졌습니다. 이에 따라 AI 반도체뿐만 아니라 엔터프라이즈 소프트웨어 기업들까지 동반 강세를 보이고 있습니다.</p>
+        <h3 class="text-xl font-black mt-8 mb-4">💡 투자 가이드</h3>
+        <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 mb-6">
+            <ul class="space-y-3 text-base">
+                <li>✅ 빅테크 편식보단 QQQ, VGT 등 ETF 분할 매수</li>
+                <li>✅ AI 밸류체인 2·3차 수혜주(전력, 인프라) 관심</li>
+                <li>⚠️ 심리적 고점에 따른 단기 조정 가능성 대비 현금 20%</li>
+            </ul>
+        </div>`,
+        '2026-03-11T09:00:00+09:00'),
+
+    a('us12', 'us-stock',
+        '아마존 AWS AI 모델 전면 도입 🚀 성장률 재점화',
+        null,
+        '아마존 클라우드(AWS) 전 영역에 차세대 AI 모델 탑재 발표',
+        'B2B 클라우드 시장 점유율 1위 수성 의지, 주가 +4% 상승',
+        'AMZN 200달러 돌파 기대, 눌림목 매수',
+        `<p class="text-xl font-black mb-6">아마존이 드디어 AI에 승부수를 던졌다 🚀</p>
+        <div class="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-5 mb-8 border-l-4 border-blue-500">
+            <p class="text-lg font-bold text-blue-700 dark:text-blue-300">📌 핵심 내용</p>
+            <p class="text-2xl font-black">AWS 차세대 AI 모델 도입 · 성장 가속화</p>
+        </div>
+        <h3 class="text-xl font-black mt-8 mb-4">📊 무슨 일이야?</h3>
+        <p class="mb-4 text-lg leading-relaxed">아마존 앤디 재시 CEO가 AWS 클라우드 서비스 전반에 걸친 대대적인 AI 모델 통합 계획을 발표했습니다. 마이크로소프트 애저와의 격차를 벌리기 위한 강력한 이니셔티브로 평가되며 시장이 즉각 화답했습니다.</p>
+        <h3 class="text-xl font-black mt-8 mb-4">💡 투자 포인트</h3>
+        <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 mb-6">
+            <ul class="space-y-3 text-base">
+                <li>✅ 클라우드 부문 수익성 개선 확인 시 추세적 장기 상승</li>
+                <li>✅ e커머스 비용 절감 효과도 기대 — AMZN 비중 확대</li>
+            </ul>
+        </div>`,
+        '2026-03-11T09:00:00+09:00'),
+
+    a('us13', 'us-stock',
+        'CPI 예상치 부합, 안도하는 시장 📉 연준 금리 스텝은?',
+        null,
+        '미국 2월 소비자물가지수(CPI) 2.6% 상승 (예상 부합)',
+        '물가 안정세 재확인, 투심 회복으로 채권 금리 안정',
+        '주식 강세, 장기 국채 ETF 분할 매수 기회',
+        `<p class="text-xl font-black mb-6">2월 CPI 물가 무사통과! 안도하는 시장 📉</p>
+        <div class="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-5 mb-8 border-l-4 border-blue-500">
+            <p class="text-lg font-bold text-blue-700 dark:text-blue-300">📌 CPI 지표 결과</p>
+            <p class="text-2xl font-black">2월 CPI 전년비 2.6% 상승 · 시장 예상치 부합</p>
+        </div>
+        <h3 class="text-xl font-black mt-8 mb-4">📊 경제 읽기</h3>
+        <p class="mb-4 text-lg leading-relaxed">시장 최대 관심사였던 2월 CPI 결과가 우려를 불식시켰습니다. 끈적한 물가 우려가 완화되면서 연준의 금리 인하 경로(연 2~3회)가 유지될 것이란 기대감이 다시 자리를 잡았습니다.</p>
+        <h3 class="text-xl font-black mt-8 mb-4">💡 투자 가이드</h3>
+        <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 mb-6">
+            <ul class="space-y-3 text-base">
+                <li>✅ 위험자산 선호 지속 — 성장주 매력 우위</li>
+                <li>✅ 금리 하락 베팅 관련 TLT, IEF 등 채권 ETF 비중 조절</li>
+            </ul>
+        </div>`,
+        '2026-03-11T09:00:00+09:00'),
+
     // === 2026-03-10 신규 기사 ===
     a('us8', 'us-stock',
         '애플 AI 아이폰 18 효과 💥 매출 $124B 사상 최고',

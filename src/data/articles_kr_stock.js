@@ -10,6 +10,75 @@ function a(id, cat, title, img, b1, b2, b3, content, date) {
 }
 
 export const krStockData = [
+    // === 2026-03-11 신규 기사 ===
+    a('kr11', 'kr-stock',
+        '코스피 3,100 돌파 임박 🚀 외국인 8일째 "Buy Korea"',
+        null,
+        '코스피 장중 3,080 터치, 외국인 8거래일 연속 순매수',
+        '삼성전자·SK하이닉스 쌍끌이 매수 지속, 반도체·금융주 주도',
+        '대형 기술주 중심 홀딩, 지수 상승 모멘텀 동참',
+        `<p class="text-xl font-black mb-6">코스피 3,100이 눈앞이다! 🚀🔥</p>
+        <div class="bg-red-50 dark:bg-red-900/20 rounded-2xl p-5 mb-8 border-l-4 border-red-500">
+            <p class="text-lg font-bold text-red-700 dark:text-red-300">📌 오늘 시황 (3/11)</p>
+            <p class="text-2xl font-black">코스피 3,080선 안착 · 외국인 8일 연속 순매수</p>
+            <p class="text-base mt-2">반도체 투톱 강세 지속</p>
+        </div>
+        <h3 class="text-xl font-black mt-8 mb-4">📊 왜 오르나?</h3>
+        <p class="mb-4 text-lg leading-relaxed">미증시 훈풍과 우호적 환율 환경, AI 반도체 수출 실적 개선 기대감이 외국인 자금을 지속적으로 끌어들이고 있습니다.</p>
+        <h3 class="text-xl font-black mt-8 mb-4">💡 지금은 이렇게 대처하세요</h3>
+        <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 mb-6">
+            <ul class="space-y-3 text-base">
+                <li>✅ 주도주(반도체, 금융) 비중 유지 전략</li>
+                <li>✅ 저평가된 KOSPI 200 종목 탐색</li>
+                <li>⚠️ 단기 급등에 따른 차익 매물 출회 주의</li>
+            </ul>
+        </div>`,
+        '2026-03-11T09:00:00+09:00'),
+
+    a('kr12', 'kr-stock',
+        '밸류업 수혜주 2차 랠리 🏦 금융주 배당+자사주 소각 "훨훨"',
+        null,
+        '은행·증권주 일제히 강세, 밸류업 프로그램 효과 본격화',
+        '추가 주주환원 기대감에 기관·외인 쌍끌이 매수',
+        '저PBR·고배당주 조정 시 매수 관점',
+        `<p class="text-xl font-black mb-6">금융주 2차 랠리 시작! 밸류업 효과 톡톡 🏦</p>
+        <div class="bg-red-50 dark:bg-red-900/20 rounded-2xl p-5 mb-8 border-l-4 border-red-500">
+            <p class="text-lg font-bold text-red-700 dark:text-red-300">📌 핵심 내용</p>
+            <p class="text-2xl font-black">은행·증권주 동반 상승 · 주주환원율 40% 기대</p>
+        </div>
+        <h3 class="text-xl font-black mt-8 mb-4">📊 무슨 일이야?</h3>
+        <p class="mb-4 text-lg leading-relaxed">국내 주요 금융지주들이 역대급 실적을 바탕으로 추가적인 자사주 매입 및 소각을 예고하며 주가가 다시 뛰고 있습니다. 밸류업 프로그램이 구체화되면서 외국인 매수세도 거셉니다.</p>
+        <h3 class="text-xl font-black mt-8 mb-4">💡 투자 가이드</h3>
+        <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 mb-6">
+            <ul class="space-y-3 text-base">
+                <li>✅ 4대 금융지주 등 핵심 밸류업 테마 비중 확대</li>
+                <li>✅ 배당락일 전후 단기 변동성 활용</li>
+            </ul>
+        </div>`,
+        '2026-03-11T09:00:00+09:00'),
+
+    a('kr13', 'kr-stock',
+        '2차전지 반등 성공 🔋 테슬라 훈풍에 K-배터리 급등',
+        null,
+        '에코프로·LG엔솔 등 2차전지 관련주 5~8% 반등',
+        '테슬라 판매 호조 및 미국 IRA 보조금 유지 전망 훈풍',
+        '낙폭과대 배터리주 트레이딩 접근 유효',
+        `<p class="text-xl font-black mb-6">오랜만에 웃은 2차전지 개미들 🔋 테슬라 훈풍!</p>
+        <div class="bg-red-50 dark:bg-red-900/20 rounded-2xl p-5 mb-8 border-l-4 border-red-500">
+            <p class="text-lg font-bold text-red-700 dark:text-red-300">📌 시장 체크</p>
+            <p class="text-2xl font-black">K-배터리 주요 종목 일제히 반등 성공</p>
+        </div>
+        <h3 class="text-xl font-black mt-8 mb-4">📊 왜 오르는 걸까?</h3>
+        <p class="mb-4 text-lg leading-relaxed">간밤 테슬라가 중국 및 유럽에서 기대 이상의 판매량을 기록했다는 소식과, 미국 IRA 정책의 정책 기조가 당분간 배터리 업계에 우호적일 것이라는 전망이 작용했습니다.</p>
+        <h3 class="text-xl font-black mt-8 mb-4">💡 접근법</h3>
+        <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 mb-6">
+            <ul class="space-y-3 text-base">
+                <li>✅ 단기 낙폭 과대에 따른 기술적 반등 성격 유의</li>
+                <li>✅ 확실한 실적 개선이 보이는 소재주 위주 선별 접근</li>
+            </ul>
+        </div>`,
+        '2026-03-11T09:00:00+09:00'),
+
     // === 2026-03-10 신규 기사 ===
     a('kr8', 'kr-stock',
         '코스피 3,050 돌파 📈 외국인 7거래일 연속 매수',
